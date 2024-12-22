@@ -1,2 +1,2 @@
 #!/bin/bash
-head -c 20 /dev/urandom | base64 | tr -dc 'a-zA-Z0-9' | head -c 20
+openssl rand -base64 "$1" | tr -dc "[:alnum:]" | head -c "$1"
