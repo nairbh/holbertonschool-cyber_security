@@ -1,1 +1,1 @@
-ssh-keygen -t rsa -b 4084 -f "$1" -N ""
+ssh-keygen -t rsa -b 4096 -f "$1" -N ""
