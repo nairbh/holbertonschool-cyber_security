@@ -1,2 +1,2 @@
 #!/bin/bash
-ps -u "$1" -o user,pid,%cpu,%mem,vsz,rss,comm --sort=-%mem | grep -vE '\<0\>'
+ps aux | grep -v "^$1" | awk '$5 > 0' | awk '$6 > 0'
