@@ -1,3 +1,2 @@
 #!/bin/bash
-
-sudo ss -t -a
+sudo ss -t -a -n -p
