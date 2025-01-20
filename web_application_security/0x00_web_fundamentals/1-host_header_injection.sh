@@ -1,2 +1,2 @@
 #!/bin/bash
-curl -s -X POST -H "Host: $$1" --data-urlencode "$$2" "$3"
+curl -s -X POST "$2" -H "HOST: $1" -d "$3"
