@@ -1,1 +1,1 @@
-/api/a3/sql_injection/all_orders/status
+/api/a3/nosql_injection/market_values
