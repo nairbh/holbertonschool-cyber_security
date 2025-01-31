@@ -1,1 +1,1 @@
-http://web0x01.hbtn/api/a3/sql_injection/all_orders/status
+/api/a3/sql_injection/all_orders/status
