@@ -1,3 +1,4 @@
 #!/bin/bash
-useradd -m "$1"
-echo -e "$2\n$2" | passwd "$1"
+addgroup $1
+chown $1 $2
+chmod g+rx $1
