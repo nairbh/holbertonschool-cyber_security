@@ -1,2 +1,2 @@
 #!/bin/bash
-find / -type d -perm -0002 -exec ls -d {} \; -exec chmod o-w {} \;
+find / -xdev -type d -perm -0002 -exec lsi -d {} \; -exec chmod o-w {} \;
