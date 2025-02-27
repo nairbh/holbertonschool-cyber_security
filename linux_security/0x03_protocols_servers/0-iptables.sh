@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo iptables -t nat -L -n
+sudo iptables -t nat -L -v
