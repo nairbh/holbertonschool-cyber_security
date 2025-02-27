@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo showmount -e $IP_ADDRESS
+sudo showmount -e "$1"
