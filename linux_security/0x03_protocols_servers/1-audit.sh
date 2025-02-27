@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo sed '/^\s*#\|^$/d' /etc/ssh/sshd_config
+sudo grep '/^\s*#\|^$/d' /etc/ssh/sshd_config
