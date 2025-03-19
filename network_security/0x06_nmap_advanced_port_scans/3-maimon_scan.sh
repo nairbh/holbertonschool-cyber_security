@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo nmap -sM --verbose -p21,22,23,80,443 --reason $1
+sudo nmap -sM --verbose -p http,https,ftp,ssh,telnet --reason $1
