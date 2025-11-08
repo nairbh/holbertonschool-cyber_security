@@ -1,3 +1,3 @@
 #!/bin/bash
-sudo iptables -P INPUT DROP
-sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+iptables -P INPUT -j DROP && iptables -A INPUT -p tcp --dport ssh -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
