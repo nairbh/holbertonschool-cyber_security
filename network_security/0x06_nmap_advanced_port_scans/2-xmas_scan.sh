@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo nmap -sX -vv --open $1
+sudo nmap -sX -vv --open  -reason $1
