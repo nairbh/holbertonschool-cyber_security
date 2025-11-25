@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+"""Documentation :
+Module docs.
+"""
+
 import sys
 import os
 
