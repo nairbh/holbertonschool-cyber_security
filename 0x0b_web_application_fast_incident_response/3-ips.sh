@@ -1,4 +1,5 @@
 #!/bin/bash 
+#grep "Accepted password for root" auth.log | grep "from" | awk '{for (i=1;i<=NF;i++) if ($i=="from") print $(i+1)}'
 
 grep "Accepted password for root" auth.log | grep "from" | \
 awk '{for (i=1;i<=NF;i++) if ($i=="from") print $(i+1)}' | \
