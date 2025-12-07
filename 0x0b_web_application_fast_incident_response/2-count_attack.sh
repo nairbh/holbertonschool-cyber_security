@@ -1,15 +1,14 @@
 #!/bin/bash
 
-logs=$(tail -n 1000 /var/log/auth.log)
-
-compromised=$(echo "$logs" | awk '
-    /Failed password/ { fail[$NF]++ }
+tail -n 1000 /var/log/auth.log | awk '
+    /Failed password/ {
+        user=$9
+        fails[user]++
+    }
     /Accepted password/ {
-        user=$NF
-        if (fail[user] > 2) {
+        user=$9
+        if (fails[user] > 2) {
             print user
         }
     }
-' | sort -u)
-
-echo "$compromised"
+' | sort -u
