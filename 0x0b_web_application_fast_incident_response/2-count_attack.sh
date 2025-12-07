@@ -1,10 +1,11 @@
 #!/bin/bash
 
-# Define the log file path
-LOG_FILE="logs.txt"
+tail -n 1000 auth.log > 1000.log
+log_file=1000.log
+failed_passwords=$(grep 'Failed password' "$log_file")
+accepted_passwords=$(grep 'Accepted password' "$log_file")
+failed_users=$(echo "$failed_passwords" | awk '{print $9}' | sort | uniq)
+accepted_users=$(echo "$accepted_passwords" | awk '{print $9}' | sort | uniq)
+common_users=$(comm -12 <(echo "$failed_users") <(echo "$accepted_users"))
 
-# Find the IP address with the most requests
-ATTACKER_IP=$(awk '{print $1}' "$LOG_FILE" | grep -Eo '^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | sort | uniq -c | sort -nr | head -n 1 | awk '{print $2}')
-
-# Count the number of requests from the attacker's IP address
-grep "$ATTACKER_IP" "$LOG_FILE" | wc -l
+echo "$common_users"
