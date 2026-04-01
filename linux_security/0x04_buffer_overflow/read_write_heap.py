@@ -1,8 +1,6 @@
 #!/usr/bin/python3
-
 import sys
 import os
-
 """Documentation :
 Module docs.
 """
@@ -10,7 +8,9 @@ Module docs.
 
 pid_, s, r = int(sys.argv[1]), sys.argv[2].encode(), sys.argv[3].encode()
 
-#parser maps to find the heap with read and write permission"
+if len(sys.argv) != 4:
+    print("Usage: read_write_heap.py pid search_string replace_string")
+    sys.exit(1)
 
 heap_over = next(l for l in open(f"/proc/{pid_}/maps") if "heap" in l and "rw" in l)
 
