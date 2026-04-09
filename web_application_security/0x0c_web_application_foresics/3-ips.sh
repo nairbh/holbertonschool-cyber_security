@@ -1,2 +1,2 @@
 #!/bin/bash
-grep -i -E "from|for|Received disconnect from IP" auth.log | awk '{print $12}' | sort | uniq -c | wc -l
+grep "Accepted password" auth.log | grep -oE '[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+' | sort -u | wc -l
