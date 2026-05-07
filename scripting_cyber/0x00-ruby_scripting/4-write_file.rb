@@ -3,9 +3,10 @@
 require 'json'
 
 def merge_json_files(file1_path, file2_path)
-  src = JSON.parse(File.read(file1_path))
-  dst = JSON.parse(File.read(file2_path))
-  merged = dst + src
-  text = JSON.pretty_generate(merged)
-  File.write(file2_path, text.chomp + "\n")
+  data1 = JSON.parse(File.read(file1_path))
+  data2 = JSON.parse(File.read(file2_path))
+
+  merged_data = data2 + data1
+
+  File.write(file2_path, JSON.pretty_generate(merged_data))
 end
