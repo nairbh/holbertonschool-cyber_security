@@ -10,3 +10,7 @@ def print_arguments
     puts "#{index + 1}. #{arg}"
   end
 end
+
+if File.expand_path(__FILE__) == File.expand_path($PROGRAM_NAME)
+  print_arguments
+end

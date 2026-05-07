@@ -2,13 +2,17 @@
 
 require 'json'
 require 'net/http'
+require 'openssl'
 require 'uri'
 
 def post_request(url, body_params)
   uri = URI(url)
   http = Net::HTTP.new(uri.host, uri.port)
+  http.open_timeout = 30
+  http.read_timeout = 30
   if uri.scheme == 'https'
     http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
   end
   request = Net::HTTP::Post.new(uri.request_uri)
   request['Content-Type'] = 'application/json'

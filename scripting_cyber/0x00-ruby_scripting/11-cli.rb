@@ -4,6 +4,29 @@ require 'optparse'
 
 TASKS_FILE = 'tasks.txt'
 
+def tasks_lines_from_file(path)
+  lines = []
+  if File.exist?(path)
+    raw_lines = File.readlines(path)
+    raw_lines.each do |line|
+      ch = line.chomp
+      if ch.empty?
+        next
+      end
+      lines << ch
+    end
+  end
+  lines
+end
+
+def print_cli_help
+  puts 'Usage: cli.rb [options]'
+  puts '    -a, --add TASK                   Add a new task'
+  puts '    -l, --list                       List all tasks'
+  puts '    -r, --remove INDEX               Remove a task by index'
+  puts '    -h, --help                       Show help'
+end
+
 options = {}
 parser = OptionParser.new do |opts|
   opts.banner = 'Usage: cli.rb [options]'
@@ -17,7 +40,7 @@ parser = OptionParser.new do |opts|
     options[:remove] = index
   end
   opts.on('-h', '--help', 'Show help') do
-    puts opts
+    print_cli_help
     exit 0
   end
 end
@@ -30,28 +53,14 @@ if options.key?(:add)
   end
   puts "Task '#{options[:add]}' added."
 elsif options[:list]
-  if File.exist?(TASKS_FILE)
-    raw_lines = File.readlines(TASKS_FILE)
-    lines = []
-    raw_lines.each do |line|
-      ch = line.chomp
-      if ch.empty?
-        next
-      end
-      lines << ch
-    end
-    lines.each_with_index do |task, i|
-      puts "#{i + 1}. #{task}"
-    end
+  lines = tasks_lines_from_file(TASKS_FILE)
+  lines.each_with_index do |task, i|
+    puts "#{i + 1}. #{task}"
   end
 elsif options.key?(:remove)
   idx = options[:remove]
   if File.exist?(TASKS_FILE)
-    raw_lines = File.readlines(TASKS_FILE)
-    lines = []
-    raw_lines.each do |line|
-      lines << line.chomp
-    end
+    lines = tasks_lines_from_file(TASKS_FILE)
     index_zero = idx - 1
     if index_zero >= 0
       if index_zero < lines.length
